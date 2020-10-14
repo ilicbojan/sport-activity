@@ -1,0 +1,89 @@
+﻿@model IEnumerable<SportObject>
+
+@{
+    ViewData["Title"] = "Sportski objekti";
+}
+
+@if (Model.Any())
+{
+    <h1 class="h1 text-center text-success my-4">Sportski objekti</h1>
+    <div class="row">
+        <div class="col-md-4 mx-auto">
+            <a asp-action="CreateSportObject" asp-controller="Administration" class="btn btn-primary btn-block btn-lg">
+                Kreiraj sportski objekat
+            </a>
+        </div>
+    </div>
+
+    <table id="sportObjects" class="table table-bordered table-striped table-hover">
+        <thead class="bg-primary text-light">
+            <tr>
+                <th>Naziv</th>
+                <th>Sport</th>
+                <th>Cena</th>
+                <th>Uplaceno</th>
+                <th>Adresa</th>
+                <th>Email</th>
+                <th>Telefon</th>
+                <th>Edit</th>
+                <th style="width:80px">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var sportObject in Model)
+            {
+                <tr>
+                    <td>
+                        <a asp-action="Details" asp-controller="SportObject" asp-route-id="@sportObject.Id" class="text-success">
+                            @sportObject.Name
+                        </a>
+                    </td>
+                    <td>@sportObject.Sport.Name</td>
+                    <td>@sportObject.PriceForHour din.</td>
+                    <td>
+                        <input type="checkbox" asp-for="@sportObject.IsPayed" disabled />
+                    </td>
+                    <td>@sportObject.Address</td>
+                    <td>@sportObject.Email</td>
+                    <td>@sportObject.Phone</td>
+                    <td>
+                        <a asp-action="EditSportObject" asp-controller="Client" asp-route-id="@sportObject.Id" class="text-info">
+                            Edit
+                        </a>
+                    </td>
+                    <td>
+                        <form method="post" asp-action="DeleteSportObject" asp-controller="Administration" asp-route-id="@sportObject.Id">
+
+                            <span id="confirmDeleteSpan_@sportObject.Id" style="display:none">
+                                <span>Are you sure?</span>
+                                <button type="submit" class="btn btn-link text-danger">Yes</button>
+                                <a href="#" class="btn btn-link text-info"
+                                   onclick="confirmDelete('@sportObject.Id', false)">No</a>
+                            </span>
+
+                            <span id="deleteSpan_@sportObject.Id">
+                                <a href="#" class="btn btn-link text-danger"
+                                   onclick="confirmDelete('@sportObject.Id', true)">Delete</a>
+                            </span>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <h1 class="text-center text-danger">Nema sportskih objekata!!!</h1>
+}
+
+
+
+@section Scripts {
+    <script src="~/js/site.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#sportObjects').DataTable();
+        });
+    </script>
+}

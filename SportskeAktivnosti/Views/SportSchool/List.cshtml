@@ -1,0 +1,94 @@
+﻿@model IEnumerable<SportSchool>
+
+@{
+    ViewData["Title"] = "Skole sporta";
+}
+
+@section landinghtml {
+    <div class="row">
+        <div class="col-sm-10 mx-auto hero-text-box">
+            <div class="row text-center">
+                <div class="col-sm-6 mx-auto">
+                    <h1 class="text-light mb-4">Skole sporta</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 mx-auto">
+                    <input type="text" id="myInput" onkeyup="searchByName()" class="form-control" placeholder="Search...">
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section css  {
+
+    <style>
+        header {
+        background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.7)), to(rgba(0, 0, 0, 0.7))), url(../images/skolesporta.jpg);
+        background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(../images/skolesporta.jpg);
+    }
+    </style>
+    <link href="~/css/header.css" rel="stylesheet" />
+
+}
+
+
+@if (Model.Any())
+{
+    <div class="card-deck mt-4" id="deck">
+        @foreach (var sportSchool in Model)
+        {
+            var image1Path = "~/images/" + (sportSchool.Image1Path ?? "slika.jpg");
+            <div class="col-10 col-sm-6 col-md-5 col-lg-4 col-xl-4 mx-auto my-5 my-sm-3 my-lg-4 px-xl-3">
+
+                <div class="card text-white bg-primary border-0 shadow rounded-0">
+                    <h3 class="card-header h5 text-center">@sportSchool.Name</h3>
+                    <img class="card-img-top imageThumbnail" src="@image1Path" asp-append-version="true" alt="Card image">
+                    <div class="card-body bg-white text-primary p-0 pt-1">
+                        <div class="row">
+                            <div class="col-12 text-primary font-weight-bold mx-2" style="font-size:16px">&gt;&nbsp; @sportSchool.Address</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 font-weight-bold mx-2" style="font-size:16px">&gt;&nbsp; <a href="#">@sportSchool.Email</a></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6 font-weight-bold text-primary ml-2" style="font-size:15px"><span style="font-size:16px">&gt;</span>&nbsp; <a href="#">@sportSchool.Phone</a></div>
+                            <div class="col-5 font-weight-bold text-primary" style="font-size:15px"><span style="font-size:16px">&gt;</span>&nbsp; @sportSchool.Price din.</div>
+                        </div>
+                        <a asp-controller="SportSchool" asp-action="Details" asp-route-id="@sportSchool.Id" class="btn btn-primary btn-lg btn-block mt-2" style="border-radius: 0">Detalji</a>
+
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <h2>Nema skola sporta.</h2>
+}
+
+@section Scripts {
+    <script>
+        function searchByName() {
+            // Declare variables
+            var input, filter, deck, cards, title, i, txtValue;
+            input = document.getElementById('myInput');
+            filter = input.value.toUpperCase();
+            deck = document.getElementById("deck");
+            cards = deck.getElementsByClassName('card');
+
+            // Loop through all list items, and hide those who don't match the search query
+            for (i = 0; i < cards.length; i++) {
+                title = cards[i].getElementsByClassName("card-header")[0];
+                txtValue = title.textContent || title.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    cards[i].style.display = "";
+                } else {
+                    cards[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+}

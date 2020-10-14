@@ -1,0 +1,32 @@
+﻿@model RegisterViewModel
+
+@{
+    ViewData["Title"] = "Register";
+}
+
+@section css {
+
+    <link href="~/css/signin.css" rel="stylesheet" />
+}
+
+<div class="row text-center container-signin">
+    <form method="post" asp-action="Register" asp-controller="Account" class="form-signin">
+        <img class="mb-4" src="~/images/slika.jpg" alt="" width="72" height="72">
+        <h1 class="h3 mb-3 font-weight-normal">Register</h1>
+
+        <label asp-for="Email" class="sr-only">Email address</label>
+        <input asp-for="Email" type="email" class="form-control" placeholder="Email address" required autofocus>
+        <span asp-validation-for="Email" class="text-danger"></span>
+
+        <label asp-for="Password" class="sr-only">Password</label>
+        <input asp-for="Password" type="password" class="form-control" placeholder="Password" required>
+        <span asp-validation-for="Password" class="text-danger"></span>
+
+
+        <label asp-for="ConfirmPassword" class="sr-only">Confirm password</label>
+        <input asp-for="ConfirmPassword" type="password" class="form-control" placeholder="Confirm password" required>
+        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+
+        <button class="btn btn-lg btn-primary btn-block mt-4" type="submit">Register</button>
+    </form>
+</div>

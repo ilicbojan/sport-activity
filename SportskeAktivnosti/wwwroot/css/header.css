@@ -1,0 +1,27 @@
+﻿body {
+    background-color: #eee;
+}
+
+header {
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    height: 50vh;
+    position: relative;
+}
+
+.hero-text-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.card {
+    transition: transform .3s;
+}
+
+    .card:hover {
+        transform: translateY(-1rem) scale(1.06);
+    }

@@ -1,0 +1,87 @@
+﻿@model IEnumerable<Tournament>
+
+@{
+    ViewData["Title"] = "Turniri";
+}
+
+@if (Model.Any())
+{
+    <h1 class="h1 text-center text-success my-4">Turniri</h1>
+    <div class="row">
+        <div class="col-md-4 mx-auto">
+            <a asp-action="CreateTournament" asp-controller="Administration" class="btn btn-primary btn-block btn-lg">
+                Kreiraj turnir
+            </a>
+        </div>
+    </div>
+
+    <table id="tournaments" class="table table-bordered table-striped table-hover">
+        <thead class="bg-primary text-light">
+            <tr>
+                <th>Naziv</th>
+                <th>Sport</th>
+                <th>Ucesce</th>
+                <th>Uplaceno</th>
+                <th>Email</th>
+                <th>Telefon</th>
+                <th>Edit</th>
+                <th style="width:80px">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var tournament in Model)
+            {
+                <tr>
+                    <td>
+                        <a asp-action="Details" asp-controller="Tournament" asp-route-id="@tournament.Id" class="text-success">
+                            @tournament.Name
+                        </a>
+                    </td>
+                    <td>@tournament.Sport.Name</td>
+                    <td>@tournament.PriceParticipation din.</td>
+                    <td>
+                        <input type="checkbox" asp-for="@tournament.IsPayed" disabled />
+                    </td>
+                    <td>@tournament.Email</td>
+                    <td>@tournament.Phone</td>
+                    <td>
+                        <a asp-action="EditTournament" asp-controller="Client" asp-route-id="@tournament.Id" class="text-info">
+                            Edit
+                        </a>
+                    </td>
+                    <td>
+                        <form method="post" asp-action="DeleteTournament" asp-controller="Administration" asp-route-id="@tournament.Id">
+
+                            <span id="confirmDeleteSpan_@tournament.Id" style="display:none">
+                                <span>Are you sure?</span>
+                                <button type="submit" class="btn btn-link text-danger">Yes</button>
+                                <a href="#" class="btn btn-link text-info"
+                                   onclick="confirmDelete('@tournament.Id', false)">No</a>
+                            </span>
+
+                            <span id="deleteSpan_@tournament.Id">
+                                <a href="#" class="btn btn-link text-danger"
+                                   onclick="confirmDelete('@tournament.Id', true)">Delete</a>
+                            </span>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <h1 class="text-center text-danger">Nema sportskih objekata!!!</h1>
+}
+
+
+
+@section Scripts {
+    <script src="~/js/site.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#tournaments').DataTable();
+        });
+    </script>
+}

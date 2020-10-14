@@ -1,0 +1,21 @@
+﻿body {
+    background-color: #eee;
+}
+
+.card {
+    transition: transform .3s;
+}
+
+    .card:hover {
+        transform: translateY(-1rem) scale(1.03);
+    }
+
+.details {
+    background-color: white;
+    transition: transform .3s;
+}
+
+
+.details:hover {
+    transform: scale(1.03);
+}

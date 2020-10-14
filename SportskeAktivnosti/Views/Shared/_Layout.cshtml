@@ -1,0 +1,132 @@
+﻿@inject SignInManager<IdentityUser> signInManager;
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-flatly.css" />
+        <link rel="stylesheet" type="text/css" href="~/lib/DataTables/datatables.min.css" />
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+        <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script type="text/javascript" src="~/lib/DataTables/datatables.min.js"></script>
+    </environment>
+
+    <environment exclude="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-flatly.css" />
+        <link rel="stylesheet" type="text/css" href="~/lib/DataTables/datatables.min.css" />
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+        <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script type="text/javascript" src="~/lib/DataTables/datatables.min.js"></script>
+    </environment>
+
+    <title>@ViewData["Title"]</title>
+
+    <link href="~/css/site.css" rel="stylesheet" />
+    <link href="~/css/custom-style.css" rel="stylesheet" />
+    @RenderSection("css", false)
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-primary">
+            <a class="navbar-brand p-0 my-n2" asp-controller="Home" asp-action="Index">
+                <img src="~/images/logo-blue.png" class="logo" />
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="#navbarColor01"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Home" asp-action="Index">Pocetna <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdownMenuLink" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Sport
+                        </a>
+
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a asp-action="List" asp-controller="SportObject" asp-route-sport="Fudbal" class="dropdown-item">
+                                Fudbal
+                            </a>
+                            <a asp-action="List" asp-controller="SportObject" asp-route-sport="Kosarka" class="dropdown-item">
+                                Kosarka
+                            </a>
+                            <a asp-action="List" asp-controller="SportObject" asp-route-sport="Tenis" class="dropdown-item">
+                                Tenis
+                            </a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-action="List" asp-controller="SportObject" asp-route-sport="Teretana" class="nav-link">
+                            Teretane
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-action="List" asp-controller="SportObject" asp-route-sport="Bazen" class="nav-link">
+                            Bazeni
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-action="List" asp-controller="Tournament" class="nav-link">Turniri</a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-action="List" asp-controller="SportSchool" class="nav-link">Skole sporta</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                    @if (signInManager.IsSignedIn(User))
+                    {
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item">
+                                <a asp-action="Index" asp-controller="Administration" class="nav-link">Admin panel</a>
+                            </li>
+                        }
+                        else if (User.IsInRole("Client"))
+                        {
+                            <li class="nav-item">
+                                <a asp-action="EditProfile" asp-controller="Client" class="nav-link">Moj profil</a>
+                            </li>
+                        }
+
+                        <li class="nav-item">
+                            <form method="post" asp-action="Logout" asp-controller="Account">
+                                <button type="submit" class="nav-link btn btn-link" style="width: auto">
+                                    Logout @User.Identity.Name
+                                </button>
+                            </form>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a asp-action="Register" asp-controller="Account" class="nav-link">Registracija</a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-action="Login" asp-controller="Account" class="nav-link">Prijava</a>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </nav>
+        @RenderSection("landinghtml", false)
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

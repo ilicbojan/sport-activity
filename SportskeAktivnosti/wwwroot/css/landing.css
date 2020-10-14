@@ -1,0 +1,79 @@
+﻿header {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.7)), to(rgba(0, 0, 0, 0.7))), url(../images/landing1.jpg);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(../images/landing1.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    height: 100vh;
+    position: relative;
+    margin-bottom: 4rem;
+}
+
+body {
+    background-color: #eeeeee;
+}
+
+.hero-text-box {
+    position: absolute;
+    width: 1140px;
+    top: 44%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.section {
+    padding: 4rem 0;
+    background-size: cover;
+}
+
+.section-white {
+    padding: 6rem 0;
+    background-color: #fff;
+    background-size: cover;
+}
+
+.feature-box {
+    background-color: white;
+    font-size: 1.1rem;
+    padding: 1.5rem;
+    margin: auto 2rem;
+    text-align: center;
+    border-radius: 3px;
+    box-shadow: rgba(0, 0, 0, .2) 0 1.5rem 4rem;
+    transition: transform .3s;
+}
+.feature-box__icon {
+    font-size: 4rem;
+    margin: 1.3rem auto;
+    display: inline-block;
+    color: #18bc9c;
+}
+
+    .feature-box:hover {
+        transform: translateY(-1.5rem) scale(1.03);
+    }
+
+.card {
+    transition: transform .3s;
+}
+
+    .card:hover {
+        transform: translateY(-1rem) scale(1.06);
+    }
+
+.section-image {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.7)), to(rgba(0, 0, 0, 0.7))), url(../images/landing2.jpg);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(../images/landing2.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    height: 50vh;
+    z-index: 0;
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+}

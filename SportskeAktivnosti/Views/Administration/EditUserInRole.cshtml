@@ -1,0 +1,66 @@
+﻿@model List<RoleUsersViewModel>
+
+@{
+    ViewData["Title"] = "Manage role users";
+    var roleId = ViewBag.roleId;
+}
+
+<h1 class="text-center text-success h1 my-4">Manage role users</h1>
+
+
+<div class="col-md-10 mx-auto">
+    
+    <form method="post">
+
+        <div class="row">
+            <div class="mx-auto">
+                <input type="submit" value="Update" class="btn btn-primary btn-duo m-2" />
+                <a asp-action="EditRole" asp-route-id="@roleId" class="btn btn-secondary btn-duo mx-2">Cancel</a>
+            </div>
+        </div>
+        <table id="users" class="table table-bordered table-striped table-hover">
+            <thead class="bg-primary text-light">
+                <tr>
+                    <th style="width:58px;">Is in role</th>
+                    <th>Username</th>
+                    <th>Id</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.Count; i++)
+                {
+                    <tr>
+                        <td class="text-center">
+                            <input type="hidden" asp-for="@Model[i].UserId" />
+                            <input type="hidden" asp-for="@Model[i].UserName" />
+                            <input type="checkbox" asp-for="@Model[i].IsSelected" />
+                        </td>
+                        <td>
+                            <label asp-for="@Model[i].IsSelected" class="form-check-label">
+                                @Model[i].UserName
+                            </label>
+                        </td>
+                        <td>
+                            <label asp-for="@Model[i].IsSelected" class="form-check-label">
+                                @Model[i].UserId
+                            </label>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+
+
+        @section Scripts {
+
+            <script>
+                $(document).ready(function () {
+                    $('#users').DataTable();
+                });
+            </script>
+        }
+    </form>
+</div>
+
+

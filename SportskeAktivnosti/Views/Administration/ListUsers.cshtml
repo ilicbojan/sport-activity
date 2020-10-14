@@ -1,0 +1,86 @@
+﻿@model IEnumerable<IdentityUser>
+
+@{
+    ViewData["Title"] = "Users";
+}
+
+<h1 class="h1 text-success text-center my-4">Users</h1>
+
+@if (Model.Any())
+{
+    <div class="row">
+        <div class="col-md-4 mx-auto">
+            <a asp-action="Register" asp-controller="Account" class="btn btn-primary btn-block btn-lg">
+                Create user
+            </a>
+        </div>
+    </div>
+
+    <table id="users" class="table table-bordered table-striped table-hover">
+        <thead class="bg-primary text-light">
+            <tr>
+                <th>Email</th>
+                <th>Username</th>
+                <th>Id</th>
+                <th style="width:80px">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model)
+            {
+                <tr>
+                    <td>
+                        <a asp-action="EditUser" asp-controller="Administration" asp-route-id="@user.Id" class="btn btn-link">@user.Email</a>
+                    </td>
+                    <td>@user.UserName</td>
+                    <td>@user.Id</td>
+                    <td>
+                        <form method="post" asp-action="DeleteUser" asp-controller="Administration" asp-route-id="@user.Id">
+                            <span id="confirmDeleteSpan_@user.Id" style="display:none">
+                                <span>Are you sure?</span>
+                                <button type="submit" class="btn btn-link text-danger">Yes</button>
+                                <a href="#" class="btn btn-link text-info"
+                                   onclick="confirmDelete('@user.Id', false)">No</a>
+                            </span>
+
+                            <span id="deleteSpan_@user.Id">
+                                <a href="#" class="btn btn-link text-danger"
+                                   onclick="confirmDelete('@user.Id', true)">Delete</a>
+                            </span>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="col-md-6 mx-auto">
+        <div class="card text-center bg-primary text-light">
+            <div class="card-header">
+                <h3>No users created yet</h3>
+            </div>
+            <div class="card-body bg-light text-primary">
+                <h5 class="card-title">
+                    Use the button below to create a user
+                </h5>
+            </div>
+            <div class="card-footer">
+                <a class="btn btn-info btn-block" asp-controller="Account" asp-action="Register">
+                    Add new user
+                </a>
+            </div>
+        </div>
+    </div>
+}
+
+
+@section Scripts {
+    <script src="~/js/site.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#users').DataTable();
+        });
+    </script>
+}

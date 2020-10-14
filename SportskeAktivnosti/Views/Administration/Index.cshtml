@@ -1,0 +1,93 @@
+﻿
+@{
+    ViewData["Title"] = "Admin panel";
+}
+
+@section css {
+
+    <link href="~/css/pages.css" rel="stylesheet" />
+}
+
+<div class="card-deck mt-4">
+
+    <div class="col-10 col-sm-6 col-md-5 col-lg-4 col-xl-4 mx-auto my-5 my-sm-3 my-lg-4 px-xl-3">
+        <div class="card text-white bg-primary border-0 shadow rounded-0 m-3 text-center">
+            <h3 class="card-header">Sportski Objekti</h3>
+            <div class="card-body bg-white">
+                <img class="card-img-bottom imageThumbnail" src="~/images/sportobjects.png" asp-append-version="true" alt="Card image">
+            </div>
+            <div class="card-footer">
+                <a asp-controller="Administration" asp-action="CreateSportObject" class="btn btn-primary btn-duo m-1">Kreiraj</a>
+                <a asp-controller="Administration" asp-action="ListSportObjects" class="btn btn-secondary btn-duo m-1">Lista</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-10 col-sm-6 col-md-5 col-lg-4 col-xl-4 mx-auto my-5 my-sm-3 my-lg-4 px-xl-3">
+        <div class="card text-white bg-primary border-0 shadow rounded-0 m-3 text-center">
+            <h3 class="card-header">Turniri</h3>
+            <div class="card-body bg-white">
+                <img class="card-img-bottom imageThumbnail" src="~/images/tournament.png" asp-append-version="true" alt="Card image">
+            </div>
+            <div class="card-footer">
+                <a asp-controller="Administration" asp-action="CreateTournament" class="btn btn-primary btn-duo m-1">Kreiraj</a>
+                <a asp-controller="Administration" asp-action="ListTournaments" class="btn btn-secondary btn-duo m-1">Lista</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-10 col-sm-6 col-md-5 col-lg-4 col-xl-4 mx-auto my-5 my-sm-3 my-lg-4 px-xl-3">
+        <div class="card text-white bg-primary border-0 shadow rounded-0 m-3 text-center">
+            <h3 class="card-header">Skole Sporta</h3>
+            <div class="card-body bg-white">
+                <img class="card-img-bottom imageThumbnail" src="~/images/sportschool.png" asp-append-version="true" alt="Card image">
+            </div>
+            <div class="card-footer">
+                <a asp-controller="Administration" asp-action="CreateSportSchool" class="btn btn-primary btn-duo m-1">Kreiraj</a>
+                <a asp-controller="Administration" asp-action="ListSportSchools" class="btn btn-secondary btn-duo m-1">Lista</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-10 col-sm-6 col-md-5 col-lg-4 col-xl-4 mx-auto my-5 my-sm-3 my-lg-4 px-xl-3">
+        <div class="card text-white bg-primary border-0 shadow rounded-0 m-3 text-center">
+            <h3 class="card-header">Users</h3>
+
+            <div class="card-body bg-white">
+                <img class="card-img-bottom imageThumbnail" src="~/images/user.png" asp-append-version="true" alt="Card image">
+            </div>
+            <div class="card-footer">
+                <a asp-controller="Account" asp-action="Register" class="btn btn-primary btn-duo m-1">Kreiraj</a>
+                <a asp-controller="Administration" asp-action="ListUsers" class="btn btn-secondary btn-duo m-1">Lista</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-10 col-sm-6 col-md-5 col-lg-4 col-xl-4 mx-auto my-5 my-sm-3 my-lg-4 px-xl-3">
+        <div class="card text-white bg-primary border-0 shadow rounded-0 m-3 text-center">
+            <h3 class="card-header">Roles</h3>
+            <div class="card-body bg-white">
+                <img class="card-img-bottom imageThumbnail" src="~/images/roles.png" asp-append-version="true" alt="Card image">
+            </div>
+            <div class="card-footer">
+                <a asp-controller="Administration" asp-action="CreateRole" class="btn btn-primary btn-duo m-1">Kreiraj</a>
+                <a asp-controller="Administration" asp-action="ListRoles" class="btn btn-secondary btn-duo m-1">Lista</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-10 col-sm-6 col-md-5 col-lg-4 col-xl-4 mx-auto my-5 my-sm-3 my-lg-4 px-xl-3">
+        <div class="card text-white bg-primary border-0 shadow rounded-0 m-3 text-center">
+            <h3 class="card-header">Ostalo</h3>
+            <div class="card-body bg-white">
+                <img class="card-img-bottom imageThumbnail" src="~/images/other.png" asp-append-version="true" alt="Card image">
+            </div>
+            <div class="card-footer">
+                <a href="#" class="btn btn-primary btn-duo m-1">Kreiraj</a>
+                <a href="#" class="btn btn-secondary btn-duo m-1">Lista</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+

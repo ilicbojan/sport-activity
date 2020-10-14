@@ -1,0 +1,61 @@
+﻿@model List<UserRolesViewModel>
+
+@{
+    ViewData["Title"] = "Manage user roles";
+    var userId = ViewBag.userId;
+    var email = ViewBag.Email;
+}
+
+<h1 class="text-center text-success h1 my-4">Manage @ViewBag.Email roles</h1>
+
+<div class="col-md-10 mx-auto">
+    <form method="post">
+        <table id="roles" class="table table-bordered table-striped table-hover">
+            <thead class="bg-primary text-light">
+                <tr>
+                    <th style="width:58px;">Is in role</th>
+                    <th>Role name</th>
+                    <th>Id</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.Count; i++)
+                {
+                    <tr>
+                        <td class="text-center">
+                            <input type="hidden" asp-for="@Model[i].RoleId" />
+                            <input type="hidden" asp-for="@Model[i].RoleName" />
+                            <input type="checkbox" asp-for="@Model[i].IsSelected" />
+                        </td>
+                        <td>
+                            <label asp-for="@Model[i].IsSelected" class="form-check-label">
+                                @Model[i].RoleName
+                            </label>
+                        </td>
+                        <td>
+                            <label asp-for="@Model[i].IsSelected" class="form-check-label">
+                                @Model[i].RoleId
+                            </label>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <div class="row">
+            <div class="mx-auto">
+                <input type="submit" value="Update" class="btn btn-primary btn-duo mx-2" />
+                <a asp-action="EditUser" asp-route-id="@userId" class="btn btn-secondary btn-duo mx-2">Cancel</a>
+            </div>
+        </div>
+
+
+        @section Scripts {
+
+            <script>
+                $(document).ready(function () {
+                    $('#roles').DataTable();
+                });
+            </script>
+        }
+    </form>
+</div>

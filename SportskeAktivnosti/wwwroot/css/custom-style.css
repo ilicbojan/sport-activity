@@ -1,0 +1,45 @@
+﻿html {
+    overflow-x: hidden;
+}
+
+body {
+    padding-top: 4.5rem;
+    margin-bottom: 0;
+    background-color: #eee;
+}
+
+.imageThumbnail {
+    display: inline-block;
+    height: 170px;
+    width: auto;
+}
+
+.imageDetails {
+    display: inline-block;
+    height: auto;
+    width: 100%;
+}
+
+.imageAdmin {
+    display: inline-block;
+    height: 100px;
+    width: auto;
+}
+
+.btn-duo {
+    width: 100px;
+}
+
+.btn-trio {
+    width: 80px;
+    padding: 0.4rem 0.4rem;
+}
+
+.logo {
+    height: 60px;
+    width: auto;
+}
+
+.shadow {
+    box-shadow: rgba(0, 0, 0, .2) 0 1.5rem 4rem;
+}

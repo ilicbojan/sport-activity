@@ -1,0 +1,60 @@
+﻿@model SportObject
+
+@{
+    ViewData["Title"] = Model.Name;
+}
+
+@section css {
+
+    <link href="~/css/pages.css" rel="stylesheet" />
+}
+
+<div class="row">
+    <div class="col-md-12">
+        @if (User.IsInRole("Admin"))
+        {
+            <div class="row my-4">
+                <div class="col-3">
+                    <a asp-action="EditSportObject" asp-controller="Client" asp-route-id="@Model.Id" class="btn btn-primary btn-lg btn-block">Izmeni</a>
+                </div>
+                <div class="col-6">
+                    <h1 class="text-success text-center h1">@Model.Name</h1>
+                </div>
+                <div class="col-3">
+                    <a asp-action="ListSportObjects" asp-controller="Administration" class="btn btn-secondary btn-lg btn-block">Sportski objekti</a>
+                </div>
+            </div>
+        }
+        else
+        {
+            <h1 class="text-success text-center h1 my-4">@Model.Name</h1>
+        }
+        <div class="row mb-5 my-4 shadow details">
+            <div class="col-md-6 p-0">
+                <img src="~/images/@Model.Image1Path" class="imageDetails" asp-append-version="true" alt="Image" />
+            </div>
+            <div class="col-md-6 my-auto pl-5">
+                <h4 class="h4"><span class="font-weight-bolder text-success">&gt;&nbsp;</span> Grad: @Model.City.Name</h4>
+                <h4 class="h4 my-4"><span class="font-weight-bolder text-success">&gt;&nbsp;</span> Adresa: @Model.Address</h4>
+                <h4 class="h4"><span class="font-weight-bolder text-success">&gt;&nbsp;</span> Email: <a href="#">@Model.Email</a></h4>
+                <h4 class="h4 my-4"><span class="font-weight-bolder text-success">&gt;&nbsp;</span> Telefon: @Model.Phone</h4>
+                <h4 class="h4"><span class="font-weight-bolder text-success">&gt;&nbsp;</span> Cena termina: @Model.PriceForHour din.</h4>
+                <h4 class="h4 mt-4"><span class="font-weight-bolder text-success">&gt;&nbsp;</span> Radimo od @Model.WorkStarts.ToString()h do @Model.WorkEnds.ToString()h</h4>
+            </div>
+        </div>
+        <div class="row shadow details">
+            <div class="col-md-6 my-auto p-4 text-justify">
+                <h4>@Model.Description</h4>
+                <h4>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                    incididunt ut labore et dolore magna aliqua. Non quam lacus suspendisse faucibus interdum
+                    posuere lorem.tas dui. Id interdum velit
+
+                </h4>
+            </div>
+            <div class="col-md-6 p-0">
+                <img src="~/images/@Model.Image2Path" class="imageDetails" asp-append-version="true" alt="Image" />
+            </div>
+        </div>
+    </div>
+</div>
